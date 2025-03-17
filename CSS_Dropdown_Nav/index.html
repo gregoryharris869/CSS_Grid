@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CSS-Only Accessible Dropdown Nav Menu</title>
+  </head>
+  <body>
+    <nav aria-label="Main Navigation">
+      <ul role="list">
+        <li><a href="#">About</a></li>
+        <li class="dropdown">
+          <!-- aria-expanded needs managed with Javascript -->
+          <button
+            type="button"
+            class="dropdown__title"
+            aria-expanded="false"
+            aria-controls="sweets-dropdown"
+          >
+            Sweets
+          </button>
+          <ul class="dropdown__menu" id="sweets-dropdown" role="list">
+            <li><a href="#">Donuts</a></li>
+            <li><a href="#">Cupcakes</a></li>
+            <li><a href="#">Chocolate</a></li>
+            <li><a href="#">Bonbons</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Order</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
