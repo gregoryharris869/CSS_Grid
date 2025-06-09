@@ -7,53 +7,55 @@
     <title>Grid Made Simple</title>
   </head>
   <body>
-    <main>
+    <main class="">
       <h1 class="title">CSS Grid made simple<span>GRID</span></h1>
-
-      <div class="grid" data-rows="masonry" data-layout="50-50">
-        <div class="flow prose">
-          <h2>Understanding CSS Grid Layout</h2>
-          <p>
-            CSS Grid is a powerful, two-dimensional layout system for the web,
-            allowing you to design complex responsive layouts with ease. Unlike
-            Flexbox, which works in one dimension (rows or columns), Grid excels
-            at arranging content in both rows and columns simultaneously. This
-            makes it perfect for laying out entire pages or large sections,
-            giving you a structured and predictable way to organize your
-            content.
-          </p>
+      <section class="wrapper">
+        <div class="grid" data-rows="masonry" data-layout="50-50">
+          <div class="flow prose">
+            <h2>Understanding CSS Grid Layout</h2>
+            <p>
+              CSS Grid is a powerful, two-dimensional layout system for the web,
+              allowing you to design complex responsive layouts with ease.
+              Unlike Flexbox, which works in one dimension (rows or columns),
+              Grid excels at arranging content in both rows and columns
+              simultaneously. This makes it perfect for laying out entire pages
+              or large sections, giving you a structured and predictable way to
+              organize your content.
+            </p>
+          </div>
+          <div class="flow prose">
+            <h2>Key Grid Terminology</h2>
+            <p>
+              To use CSS Grid effectively, understand these core concepts: The
+              grid container is the element where you apply display: grid; and
+              its direct children are grid items. Grid lines divide the grid
+              into rows and columns, creating grid tracks (the space between
+              lines) and grid cells (the intersection of a row and column). A
+              grid area is a rectangular space defined by four grid lines. You
+              define column and row sizes with grid-template-columns and
+              grid-template-rows, and set spacing with gap. Properties like
+              justify-items and align-items control item alignment within cells,
+              while justify-content and align-content align the grid tracks
+              themselves.
+            </p>
+          </div>
+          <div class="flow prose">
+            <h2>Practical Grid Uses</h2>
+            <p>
+              CSS Grid offers many advantages for diverse layouts. It's
+              excellent for whole page layouts, structuring headers, sidebars,
+              and main content, and also for individual component layouts like
+              image galleries or product listings. Grid simplifies responsive
+              design with fractional units and functions like minmax(), adapting
+              layouts gracefully to various screen sizes. Placing items
+              precisely is easier with properties like grid-column-start or
+              named grid areas. Grid can even reorder content independently of
+              source order and often leads to cleaner HTML and CSS by providing
+              a direct way to define element relationships in 2D space.
+            </p>
+          </div>
         </div>
-        <div class="flow prose">
-          <h2>Key Grid Terminology</h2>
-          <p>
-            To use CSS Grid effectively, understand these core concepts: The
-            grid container is the element where you apply display: grid; and its
-            direct children are grid items. Grid lines divide the grid into rows
-            and columns, creating grid tracks (the space between lines) and grid
-            cells (the intersection of a row and column). A grid area is a
-            rectangular space defined by four grid lines. You define column and
-            row sizes with grid-template-columns and grid-template-rows, and set
-            spacing with gap. Properties like justify-items and align-items
-            control item alignment within cells, while justify-content and
-            align-content align the grid tracks themselves.
-          </p>
-        </div>
-        <div class="flow prose">
-          <h2>Practical Grid Uses</h2>
-          <p>
-            CSS Grid offers many advantages for diverse layouts. It's excellent
-            for whole page layouts, structuring headers, sidebars, and main
-            content, and also for individual component layouts like image
-            galleries or product listings. Grid simplifies responsive design
-            with fractional units and functions like minmax(), adapting layouts
-            gracefully to various screen sizes. Placing items precisely is
-            easier with properties like grid-column-start or named grid areas.
-            Grid can even reorder content independently of source order and
-            often leads to cleaner HTML and CSS by providing a direct way to
-            define element relationships in 2D space.
-          </p>
-        </div>
-      </div>
+      </section>
     </main>
   </body>
 </html>

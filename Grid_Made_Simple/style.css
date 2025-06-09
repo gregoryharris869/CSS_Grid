@@ -130,7 +130,7 @@ textarea:not([rows]) {
   --space-xl-2xl: clamp(3rem, 2.38rem + 3.11vw, 5rem);
   --space-2xl-3xl: clamp(4rem, 2.91rem + 5.44vw, 7.5rem);
   --flow-space: clamp(1rem, 0.73rem + 1.36vw, 1.875rem);
-  --wrapper-max-width: 55rem;
+  --wrapper-max-width: 80rem;
   --gutter: var(--space-s-m);
   --tracking: -0.05ch;
   --tracking-s: -0.075ch;
@@ -143,6 +143,12 @@ body {
   font-size: var(--size-step-1);
   letter-spacing: var(--tracking);
   line-height: 1.4;
+}
+
+.wrapper {
+  max-width: var(--wrapper-max-width);
+  margin: 0 auto;
+  padding: var(--space-l-xl) var(--gutter);
 }
 
 .flow > * + * {
@@ -235,7 +241,7 @@ a:focus {
 .grid {
   display: grid;
 
-  gap: var(--gutter, var(--space-s-l));
+  gap: var(--gutter);
   grid-template-columns: repeat(
     var(--grid-placement, auto-fill),
     minmax(var(--grid-min-item-size, 16rem), 1fr)
