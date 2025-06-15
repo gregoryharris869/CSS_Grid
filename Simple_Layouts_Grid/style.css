@@ -105,8 +105,8 @@ body {
 
 .grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .card {
@@ -115,3 +115,15 @@ body {
   border-radius: 0.5rem;
   padding: 1rem;
 }
+
+/* @media (width > 600px) {
+  .grid {
+    --column-count: 2;
+  }
+}
+
+@media (width > 900px) {
+  .grid {
+    --column-count: 3;
+  }
+} */
