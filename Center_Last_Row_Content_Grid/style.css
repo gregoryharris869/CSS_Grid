@@ -1,0 +1,61 @@
+html {
+  color-scheme: dark;
+}
+
+.item {
+  /*   grid-column-end: span 2; */
+  height: 150px;
+  background: hsl(340 80% 50%);
+  border: 5px solid hsl(340 80% 70%);
+  border-radius: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+  /* Demo Styles */
+  max-width: 65rem;
+  margin-inline: auto;
+  margin-block: 6rem;
+
+  container-type: inline-size;
+}
+
+/* When container is at least 2 columns wide */
+@container (width >= calc(100px * 2 + 1rem)) {
+  .grid .item {
+    grid-column: span 2;
+  }
+}
+
+/* When container is between 4 and 6 columns wide */
+@container (width > calc(100px * 8 + 7rem)) and (width < calc(100px * 10 + 9rem)) {
+  .grid .item:nth-child(4n + 5):last-child {
+    grid-column: 4 / 6;
+  }
+
+  .grid:has(:nth-child(4n + 6):last-child) > :nth-last-child(2) {
+    grid-column: 3 / 5;
+  }
+
+  .grid:has(:nth-child(4n + 7):last-child) > :nth-last-child(3) {
+    grid-column: 2 / 4;
+  }
+}
+
+/* When container is between 8 and 10 columns wide */
+@container (width > calc(100px * 8 + 7rem)) and (width < calc(100px * 10 + 9rem)) {
+  .grid .item:nth-child(4n + 5):last-child {
+    grid-column: 4 / 6;
+  }
+
+  .grid:has(:nth-child(4n + 6):last-child) > :nth-last-child(2) {
+    grid-column: 3 / 5;
+  }
+
+  .grid:has(:nth-child(4n + 7):last-child) > :nth-last-child(3) {
+    grid-column: 2 / 4;
+  }
+}
