@@ -1,0 +1,186 @@
+@layer more-traditional-wrapper-container-approach {
+  .wrapper {
+    --default-max-width: 55ch;
+
+    max-width: var(--max-width, var(--default-max-width));
+    padding-inline: 1rem;
+    margin-inline: auto;
+  }
+
+  .wrapper--narrow {
+    --max-width: calc(var(--default-max-width) - 60px);
+  }
+
+  .wrapper--popout {
+    --max-width: calc(var(--default-max-width) + 60px);
+  }
+
+  .wrapper--breakout {
+    --max-width: calc(var(--default-max-width) + 120px);
+  }
+}
+
+@layer using-grid {
+  .primary-layout {
+    /* user settings */
+    --padding-inline: 1rem;
+    --content-max-width: 55ch;
+    --narrow-size-reduction: 60px;
+    --popout-extra-distance: 60px;
+    --breakout-extra-distance: 120px;
+
+    /* for calculations */
+    --_narrow-column-size: calc(
+      var(--content-max-width) - var(--narrow-size-reduction)
+    );
+    --_content-column-size: var(--narrow-size-reduction);
+    --_breakout-column-size: calc(
+      var(--breakout-extra-distance) - var(--popout-extra-distance)
+    );
+
+    display: grid;
+    grid-template-columns:
+      [full-width-start] minmax(var(--padding-inline), 1fr)
+      [breakout-start] minmax(0, var(--_breakout-column-size))
+      [popout-start] minmax(0, var(--popout-extra-distance))
+      [content-start] minmax(0, var(--_content-column-size))
+      [narrow-start]
+      min(var(--_narrow-column-size), 100% - var(--padding-inline) * 2)
+      [narrow-end]
+      minmax(0, var(--_content-column-size))
+      [content-end]
+      minmax(0, var(--popout-extra-distance)) [popout-end]
+      minmax(0, var(--_breakout-column-size)) [breakout-end]
+      minmax(var(--padding-inline), 1fr) [full-width-end];
+  }
+
+  :is(.primary-layout, .full-width) > * {
+    grid-column: content;
+  }
+
+  :is(.primary-layout, .full-width) > .narrow {
+    grid-column: narrow;
+  }
+
+  :is(.primary-layout, .full-width) > .popout {
+    grid-column: popout;
+  }
+
+  :is(.primary-layout, .full-width) > .breakout {
+    grid-column: breakout;
+  }
+
+  :is(.primary-layout, .full-width) > .full-width {
+    display: grid;
+    grid-template-columns: inherit;
+    grid-column: full-width;
+  }
+
+  :is(.primary-layout, .full-width) > .narrow-left-only {
+    grid-column: narrow-start / content-end;
+  }
+
+  :is(.primary-layout, .full-width) > .narrow-right-only {
+    grid-column: content-start / narrow-end;
+  }
+
+  :is(.primary-layout, .full-width) > .popout-left-only {
+    grid-column: popout-start / content-end;
+  }
+
+  :is(.primary-layout, .full-width) > .popout-right-only {
+    grid-column: content-start / popout-end;
+  }
+
+  :is(.primary-layout, .full-width) > .breakout-left-only {
+    grid-column: breakout-start / content-end;
+  }
+
+  :is(.primary-layout, .full-width) > .breakout-right-only {
+    grid-column: content-start / popout-end;
+  }
+
+  :is(.primary-layout, .full-width) > .full-width-left-only {
+    grid-column: full-width-start / content-end;
+  }
+
+  :is(.primary-layout, .full-width) > .full-width-right-only {
+    grid-column: content-start / full-width-end;
+  }
+}
+@layer general-styling {
+  :root {
+    --font-family: system-ui;
+
+    --fs-300: clamp(0.94rem, calc(0.92rem + 0.08vw), 0.98rem);
+    --fs-400: clamp(1.13rem, calc(1.06rem + 0.33vw), 1.31rem);
+    --fs-500: clamp(1.35rem, calc(1.21rem + 0.69vw), 1.75rem);
+    --fs-600: clamp(1.62rem, calc(1.37rem + 1.24vw), 2.33rem);
+    --fs-700: clamp(1.94rem, calc(1.54rem + 2.03vw), 3.11rem);
+    --fs-800: clamp(2.33rem, calc(1.7rem + 3.15vw), 4.14rem);
+    --fs-900: clamp(2.8rem, calc(1.85rem + 4.74vw), 5.52rem);
+
+    --clr-primary-300: hsl(219, 76%, 55%);
+    --clr-primary-400: hsl(219, 76%, 40%);
+    --clr-primary-500: hsl(219, 76%, 25%);
+    --clr-secondary-300: hsl(269, 75%, 55%);
+    --clr-secondary-400: hsl(269, 75%, 40%);
+    --clr-secondary-500: hsl(269, 75%, 25%);
+    --clr-accent-300: hsl(358, 72%, 65%);
+    --clr-accent-400: hsl(358, 72%, 50%);
+    --clr-accent-500: hsl(358, 72%, 35%);
+    --clr-neutral-100: hsl(220, 5%, 95%);
+    --clr-neutral-200: hsl(220, 5%, 92%);
+    --clr-neutral-300: hsl(220, 5%, 78%);
+    --clr-neutral-400: hsl(220, 5%, 65%);
+    --clr-neutral-500: hsl(220, 5%, 50%);
+    --clr-neutral-600: hsl(220, 5%, 35%);
+    --clr-neutral-700: hsl(220, 5%, 28%);
+    --clr-neutral-800: hsl(220, 5%, 8%);
+    --clr-neutral-900: hsl(220, 5%, 5%);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    color-scheme: var(--color-scheme);
+
+    font-family: var(--font-family);
+    font-size: var(--fs-400);
+    line-height: 1.6;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .primary-bg {
+    background-color: var(--clr-primary-400);
+    color: white;
+  }
+
+  .page-title {
+    font-size: var(--fs-900);
+    line-height: 1.05;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: var(--fs-800);
+    line-height: 1.1;
+  }
+
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+}
